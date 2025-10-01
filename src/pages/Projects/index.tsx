@@ -1,9 +1,19 @@
 import { Button } from "@/components/ui/button";
-import FilterProjects from "./FilterProjects";
-import { Plus } from "lucide-react";
+import FilterContainer from "../../components/forms/FilterContainer";
+import { Plus, Search } from "lucide-react";
 import { ProjectCard } from "@/components/cards/ProjectCard";
+import type { SelectOption } from "@/components/forms/SelectField";
+import { useState } from "react";
+import { Input } from "@/components/ui/input";
+import SelectField from "@/components/forms/SelectField";
+import SearchBar from "@/components/forms/SearchBar";
 
 export default function Projects() {
+    const budgetOptions: SelectOption[] = [{ label: 'All Budgets', value: 'all' }];
+    const skillOptions: SelectOption[] = [{ label: 'All Skills', value: 'all' }];
+
+    const [searchTerm, setSearchTerm] = useState<string>("");
+
     return (
         <div className="flex flex-col items-center py-10 gap-10">
             <div className="container flex justify-between">
@@ -11,26 +21,30 @@ export default function Projects() {
                     <h1>Browse Projects</h1>
                     <div className="text-muted-foreground">Find exciting opportunities to work with Indonesian UMKM</div>
                 </div>
-                <div>
-                    <Button>
-                        <Plus/>
-                        Post Project
-                    </Button>
+                <Button>
+                    <Plus />
+                    Post Project
+                </Button>
+            </div>
+
+            <FilterContainer>
+                <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+                <SelectField options={budgetOptions} defaultValue="all" />
+                <SelectField options={skillOptions} defaultValue="all" />
+                <Button variant="outline">Clear Filters</Button>
+            </FilterContainer>
+
+            <div className="container flex flex-col gap-4">
+                <div className="text-muted-foreground">
+                    Showing 1-20 of 100 projects
+                </div>
+                <div className="grid grid-cols-2 gap-6">
+                    <ProjectCard />
+                    <ProjectCard />
+                    <ProjectCard />
+                    <ProjectCard />
                 </div>
             </div>
-
-            <FilterProjects />
-
-            <div className="container text-muted-foreground">
-                Showing 1-20 of 100 projects
-            </div>
-
-            <div className="container grid grid-cols-2 gap-6">
-                <ProjectCard />
-                <ProjectCard />
-                <ProjectCard />
-            </div>
         </div>
-
     )
 }
