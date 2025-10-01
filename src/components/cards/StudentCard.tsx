@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import IconLabel from "../forms/IconLabel";
-import { Clock, GraduationCap, MapPin, Star } from "lucide-react";
+import { GraduationCap, MapPin, Star } from "lucide-react";
 
 export default function StudentCard() {
     return (
@@ -18,15 +18,12 @@ export default function StudentCard() {
 
                         <div className="flex flex-col gap-2">
                             <CardTitle>Student Name</CardTitle>
-                            <div className="flex items-center gap-4 text-sm">
-                                <div className="flex items-center gap-1">
-                                    <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                                    <span className="font-medium">5.0</span>
-                                    <span className="text-muted-foreground">
-                                        (10 projects)
-                                    </span>
-                                </div>
-                                <IconLabel icon={Clock} label="2 years experience" />
+                            <div className="flex items-center gap-1">
+                                <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                                <span className="font-medium">5.0</span>
+                                <span className="text-muted-foreground">
+                                    (10 projects)
+                                </span>
                             </div>
                         </div>
                     </div>

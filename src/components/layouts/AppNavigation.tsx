@@ -19,7 +19,7 @@ export default function AppNavigation() {
         <header className="bg-white flex justify-center py-4 sticky top-0 z-50 border-b">
             <div className="container flex items-center justify-between">
                 <Link to="/">
-                    <img src={growlinkLogoLight} alt="Growlink" className="w-48" />
+                    <img src={growlinkLogoLight} alt="GrowLink" className="w-48" />
                 </Link>
 
                 <nav className="flex gap-20">
@@ -27,9 +27,9 @@ export default function AppNavigation() {
                         <Link
                             key={item.name}
                             to={item.href}
-                            className={cn('px-3 py-2 font-medium transition-colors text-black', {
-                                'underline underline-offset-10': isActive(item.href),
-                                'hover:opacity-80': !isActive(item.href),
+                            className={cn('px-3 py-2 font-semibold transition-colors text-black', {
+                                'underline underline-offset-10 text-primary': isActive(item.href),
+                                'hover:opacity-80 hover:text-primary': !isActive(item.href),
                             })}
                         >
                             {item.name}

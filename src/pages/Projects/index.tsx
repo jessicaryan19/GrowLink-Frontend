@@ -26,7 +26,7 @@ export default function Projects() {
                 </Button>
             </div>
 
-            <FilterContainer>
+            <FilterContainer title="Filter Projects">
                 <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
                 <SelectField options={budgetOptions} defaultValue="all" />
                 <SelectField options={skillOptions} defaultValue="all" />

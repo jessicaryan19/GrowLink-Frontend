@@ -23,7 +23,7 @@ export default function Students() {
                 </div>
             </div>
 
-            <FilterContainer>
+            <FilterContainer title="Filter Students">
                 <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
                 <SelectField options={locationOptions} defaultValue="all" />
                 <SelectField options={skillOptions} defaultValue="all" />

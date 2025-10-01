@@ -3,6 +3,7 @@ import Home from "@/pages/Home";
 import Projects from "@/pages/Projects";
 import Students from "@/pages/Students";
 import AppNavigation from "@/components/layouts/AppNavigation";
+import AppFooter from "./components/layouts/AppFooter";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/students" element={<Students />} />
         </Routes>
       </main>
+      <AppFooter />
     </div>
   );
 }

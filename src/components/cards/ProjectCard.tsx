@@ -3,15 +3,22 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import IconLabel from "../forms/IconLabel";
+import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
 
 export function ProjectCard() {
     return (
         <Card>
             <CardHeader >
                 <div className="flex justify-between items-start">
-                    <div>
-                        <CardTitle>Project Title</CardTitle>
-                        <CardDescription>Project Organization</CardDescription>
+                    <div className="flex gap-4">
+                        <Avatar className="h-14 w-14 rounded-lg">
+                            <AvatarImage src="https://github.com/evilrabbit.png" />
+                            <AvatarFallback className="rounded-lg">IC</AvatarFallback>
+                        </Avatar>
+                        <div>
+                            <CardTitle>Project Title</CardTitle>
+                            <CardDescription>Project Organization</CardDescription>
+                        </div>
                     </div>
                     <Badge variant='destructive'>Closed</Badge>
                 </div>
