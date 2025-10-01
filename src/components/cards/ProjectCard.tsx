@@ -2,6 +2,7 @@ import { Clock, DollarSign, MapPin, Users } from "lucide-react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
+import IconLabel from "../forms/IconLabel";
 
 export function ProjectCard() {
     return (
@@ -27,22 +28,10 @@ export function ProjectCard() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-2 text-muted-foreground">
-                    <div className="flex items-center gap-2">
-                        <MapPin className="h-4 w-4" />
-                        Location
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <Clock className="h-4 w-4" />
-                        Timeline
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <DollarSign className="h-4 w-4" />
-                        Budget
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <Users className="h-4 w-4" />
-                        Applicants
-                    </div>
+                    <IconLabel icon={MapPin} label="Remote" />
+                    <IconLabel icon={Clock} label="3 months" />
+                    <IconLabel icon={DollarSign} label="Rp 500,000 - Rp 1,000,000" />
+                    <IconLabel icon={Users} label="Applicants" />
                 </div>
             </CardContent>
 

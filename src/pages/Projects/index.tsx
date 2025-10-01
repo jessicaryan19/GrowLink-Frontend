@@ -1,10 +1,9 @@
 import { Button } from "@/components/ui/button";
 import FilterContainer from "../../components/forms/FilterContainer";
-import { Plus, Search } from "lucide-react";
+import { Plus } from "lucide-react";
 import { ProjectCard } from "@/components/cards/ProjectCard";
 import type { SelectOption } from "@/components/forms/SelectField";
 import { useState } from "react";
-import { Input } from "@/components/ui/input";
 import SelectField from "@/components/forms/SelectField";
 import SearchBar from "@/components/forms/SearchBar";
 

@@ -3,8 +3,8 @@ import FilterContainer from "../../components/forms/FilterContainer";
 import type { SelectOption } from "@/components/forms/SelectField";
 import { useState } from "react";
 import SelectField from "@/components/forms/SelectField";
-import { Search } from "lucide-react";
 import SearchBar from "@/components/forms/SearchBar";
+import StudentCard from "@/components/cards/StudentCard";
 
 export default function Students() {
     const locationOptions: SelectOption[] = [{ label: 'All Locations', value: 'all' }];
@@ -35,7 +35,10 @@ export default function Students() {
                     Showing 1-20 of 100 students
                 </div>
                 <div className="grid grid-cols-2 gap-6">
-                    
+                    <StudentCard />
+                    <StudentCard />
+                    <StudentCard />
+                    <StudentCard />
                 </div>
             </div>
         </div>
