@@ -6,6 +6,7 @@ import type { SelectOption } from "@/components/forms/SelectField";
 import { useState } from "react";
 import SelectField from "@/components/forms/SelectField";
 import SearchBar from "@/components/forms/SearchBar";
+import { Link } from "react-router-dom";
 
 export default function Projects() {
     const budgetOptions: SelectOption[] = [{ label: 'All Budgets', value: 'all' }];
@@ -22,7 +23,9 @@ export default function Projects() {
                 </div>
                 <Button>
                     <Plus />
-                    Post Project
+                    <Link to='/projects/create'>
+                        Post Project
+                    </Link>
                 </Button>
             </div>
 

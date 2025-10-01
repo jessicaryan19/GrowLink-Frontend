@@ -1,4 +1,3 @@
-import { ProjectCard } from "@/components/cards/ProjectCard";
 import IconLabel from "@/components/forms/IconLabel";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";

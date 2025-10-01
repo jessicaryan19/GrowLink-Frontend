@@ -6,6 +6,7 @@ import AppNavigation from "@/components/layouts/AppNavigation";
 import AppFooter from "./components/layouts/AppFooter";
 import ProjectDetails from "./pages/Projects/ProjectDetails";
 import ApplyProject from "./pages/Projects/ApplyProject";
+import CreateProject from "./pages/Projects/CreateProject";
 
 function App() {
   return (
@@ -15,9 +16,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/create" element={<CreateProject />} />
           <Route path="/projects/:id" element={<ProjectDetails />} />
           <Route path="/projects/:id/apply" element={<ApplyProject />} />
-          
+
           <Route path="/students" element={<Students />} />
         </Routes>
       </main>
