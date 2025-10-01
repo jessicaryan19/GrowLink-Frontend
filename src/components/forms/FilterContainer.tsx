@@ -12,7 +12,7 @@ export default function FilterContainer({
 }: FilterContainerProps) {
     
     return (
-        <div className="container">
+        <div className="container px-10">
             <Card>
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">

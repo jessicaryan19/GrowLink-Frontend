@@ -17,7 +17,7 @@ export default function AppNavigation() {
 
     return (
         <header className="bg-white flex justify-center py-4 sticky top-0 z-50 border-b">
-            <div className="container flex items-center justify-between">
+            <div className="container px-10 flex items-center justify-between">
                 <Link to="/">
                     <img src={growlinkLogoLight} alt="GrowLink" className="w-48" />
                 </Link>

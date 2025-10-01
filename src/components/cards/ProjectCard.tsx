@@ -4,6 +4,7 @@ import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import IconLabel from "../forms/IconLabel";
 import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
+import { Link } from "react-router-dom";
 
 export function ProjectCard() {
     return (
@@ -35,17 +36,19 @@ export function ProjectCard() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-2 text-muted-foreground">
-                    <IconLabel icon={MapPin} label="Remote" />
+                    <IconLabel icon={MapPin} label="Jakarta, Indonesia" />
                     <IconLabel icon={Clock} label="3 months" />
                     <IconLabel icon={DollarSign} label="Rp 500,000 - Rp 1,000,000" />
-                    <IconLabel icon={Users} label="Applicants" />
+                    <IconLabel icon={Users} label="8 applicants" />
                 </div>
             </CardContent>
 
-            <CardFooter className="flex justify-between items-center">
-                <p className="text-muted-foreground">Posted 2 days ago</p>
+            <CardFooter className="flex justify-between items-end">
+                <p className="text-muted-foreground text-sm">Posted May 15, 2024</p>
                 <Button>
-                    View Details
+                    <Link to="/projects/1">
+                        View Details
+                    </Link>
                 </Button>
             </CardFooter>
         </Card>

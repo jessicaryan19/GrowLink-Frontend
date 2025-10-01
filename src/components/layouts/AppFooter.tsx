@@ -6,7 +6,7 @@ import { Heart } from "lucide-react";
 export default function AppFooter() {
     return (
         <footer className='flex justify-center bg-muted'>
-            <div className="container py-10 flex flex-col gap-10">
+            <div className="container px-10 py-10 flex flex-col gap-10">
                 <div className="grid grid-cols-4 gap-10">
                     <div className="flex flex-col gap-4 col-span-2">
                         <Link to="/">

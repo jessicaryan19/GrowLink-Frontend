@@ -14,7 +14,7 @@ export default function Students() {
 
     return (
         <div className="flex flex-col items-center py-10 gap-10">
-            <div className="container flex justify-between">
+            <div className="container px-10 flex justify-between">
                 <div className="flex flex-col gap-2">
                     <h1>Find Talented Students</h1>
                     <div className="text-muted-foreground">
@@ -30,7 +30,7 @@ export default function Students() {
                 <Button variant="outline">Clear Filters</Button>
             </FilterContainer>
 
-            <div className="container flex flex-col gap-4">
+            <div className="container px-10 flex flex-col gap-4">
                 <div className="text-muted-foreground">
                     Showing 1-20 of 100 students
                 </div>
