@@ -33,7 +33,7 @@ export default function StudentCard() {
             </CardHeader>
 
             <CardContent className="flex flex-col gap-6">
-                <div className="flex gap-4 flex-wrap text-muted-foreground">
+                <div className="grid grid-cols-2 gap-2 text-muted-foreground">
                     <IconLabel icon={GraduationCap} label="Universitas Bina Nusantara" />
                     <IconLabel icon={MapPin} label="Jakarta, Indonesia" />
                 </div>

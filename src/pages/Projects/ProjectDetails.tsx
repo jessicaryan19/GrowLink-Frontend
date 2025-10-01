@@ -2,8 +2,9 @@ import IconLabel from "@/components/forms/IconLabel";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
-import { Building, Calendar, Clock, DollarSign, MapPin, Send, Users } from "lucide-react";
+import { Building, Calendar, Clock, DollarSign, MapPin, Users } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Link } from "react-router-dom";
 
 export default function ProjectDetails() {
     return (
@@ -24,7 +25,7 @@ export default function ProjectDetails() {
 
                             <div className="w-full grid grid-cols-3 gap-4">
                                 <Button className="col-span-2" size='lg'>
-                                    Apply Now
+                                    <Link to='/projects/1/apply'>Apply Now</Link>
                                 </Button>
                                 <Button variant='outline' size='lg'>
                                     Save Project
@@ -60,7 +61,7 @@ export default function ProjectDetails() {
                     <Card>
                         <CardContent className="flex flex-col gap-4">
                             <CardTitle>Requirements</CardTitle>
-                            <ul className="list-disc list-inside marker:text-secondary text-muted-foreground flex flex-col">
+                            <ul className="list-disc list-inside text-muted-foreground flex flex-col">
                                 <li>Experience with social media marketing</li>
                                 <li>Familiarity with Indonesian market and culture</li>
                                 <li>Strong communication skills</li>
@@ -71,7 +72,7 @@ export default function ProjectDetails() {
                     <Card>
                         <CardContent className="flex flex-col gap-4">
                             <CardTitle>Expected Deliverables</CardTitle>
-                            <ul className="list-disc list-inside marker:text-secondary text-muted-foreground flex flex-col">
+                            <ul className="list-disc list-inside text-muted-foreground flex flex-col">
                                 <li>10 social media posts (images and captions)</li>
                                 <li>5 short videos (15-30 seconds each)</li>
                                 <li>Content calendar for 1 month</li>
@@ -83,7 +84,6 @@ export default function ProjectDetails() {
                 <div className="w-1/3 flex flex-col gap-6">
                     <Card>
                         <CardContent className="flex flex-col gap-4">
-                            <CardTitle>Posted By</CardTitle>
                             <div className="flex gap-4 items-center">
                                 <Avatar className="h-14 w-14 rounded-lg">
                                     <AvatarImage src="https://github.com/evilrabbit.png" />
@@ -92,7 +92,7 @@ export default function ProjectDetails() {
 
                                 <div className="flex flex-col">
                                     <CardTitle>Organization Name</CardTitle>
-                                    <div className="text-muted-foreground">Owner: Jessica Ryan</div>
+                                    <div className="text-muted-foreground">Jessica Ryan</div>
                                 </div>
                             </div>
 
@@ -110,7 +110,6 @@ export default function ProjectDetails() {
                     <Card>
                         <CardContent className="flex flex-col gap-4">
                             <CardTitle>Project Details</CardTitle>
-
                             <div className="text-muted-foreground">
                                 <IconLabel icon={DollarSign} label="Rp 500,000 - Rp 1,000,000" />
                                 <IconLabel icon={Clock} label="3 months" />
@@ -126,7 +125,7 @@ export default function ProjectDetails() {
                                 Showcase your skills and win this project
                             </div>
                             <Button className="w-full">
-                                Apply Now
+                                <Link to='/projects/1/apply'>Apply Now</Link>
                             </Button>
                         </CardContent>
                     </Card>
