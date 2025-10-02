@@ -31,6 +31,9 @@ export const loginUser = async (email: string, password: string) => {
 }
 
 export const getProjectList = async (request: ProjectListRequest): Promise<{ projects: Project[], total: number }> => {
+    console.log("ENV", import.meta.env);
+    console.log("API_URL", API_URL);
+
     try {
         const res = await api.get(`/v1/project/list`, { params: request })
         return res.data
