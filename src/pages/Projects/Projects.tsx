@@ -1,0 +1,52 @@
+import { Button } from "@/components/ui/button";
+import FilterContainer from "../../components/forms/FilterContainer";
+import { Plus } from "lucide-react";
+import { ProjectCard } from "@/components/cards/ProjectCard";
+import type { SelectOption } from "@/components/forms/SelectField";
+import { useState } from "react";
+import SelectField from "@/components/forms/SelectField";
+import SearchBar from "@/components/forms/SearchBar";
+import { Link } from "react-router-dom";
+
+export default function Projects() {
+    const budgetOptions: SelectOption[] = [{ label: 'All Budgets', value: 'all' }];
+    const skillOptions: SelectOption[] = [{ label: 'All Skills', value: 'all' }];
+
+    const [searchTerm, setSearchTerm] = useState<string>("");
+
+    return (
+        <div className="flex flex-col items-center py-10 gap-10">
+            <div className="container px-10 flex justify-between">
+                <div className="flex flex-col gap-2">
+                    <h1>Browse Projects</h1>
+                    <div className="text-muted-foreground">Find exciting opportunities to work with Indonesian UMKM</div>
+                </div>
+                <Button>
+                    <Plus />
+                    <Link to='/projects/create'>
+                        Post Project
+                    </Link>
+                </Button>
+            </div>
+
+            <FilterContainer title="Filter Projects">
+                <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+                <SelectField options={budgetOptions} defaultValue="all" />
+                <SelectField options={skillOptions} defaultValue="all" />
+                <Button variant="outline">Clear Filters</Button>
+            </FilterContainer>
+
+            <div className="container px-10 flex flex-col gap-4">
+                <div className="text-muted-foreground">
+                    Showing 1-20 of 100 projects
+                </div>
+                <div className="grid grid-cols-2 gap-6">
+                    <ProjectCard />
+                    <ProjectCard />
+                    <ProjectCard />
+                    <ProjectCard />
+                </div>
+            </div>
+        </div>
+    )
+}

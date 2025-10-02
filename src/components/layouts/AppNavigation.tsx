@@ -1,12 +1,7 @@
-import {
-    NavigationMenu,
-    NavigationMenuItem,
-    NavigationMenuLink,
-    NavigationMenuList,
-} from "@/components/ui/navigation-menu"
-import growlinkLogo from "@/assets/growlink-white.svg"
+import growlinkLogoLight from "@/assets/growlink-light.svg"
 import { Link, useLocation } from "react-router-dom"
 import { Button } from "../ui/button"
+import { cn } from "@/lib/utils";
 
 const menuList = [
     { name: "Home", href: "/" },
@@ -18,12 +13,13 @@ export default function AppNavigation() {
     const location = useLocation();
     const isActive = (href: string) => {
         return location.pathname === href;
-    }
+    };
+
     return (
-        <header className="bg-primary flex justify-center py-4 sticky top-0 z-50">
-            <div className="container flex items-center justify-between">
+        <header className="bg-white flex justify-center py-4 sticky top-0 z-50 border-b">
+            <div className="container px-10 flex items-center justify-between">
                 <Link to="/">
-                    <img src={growlinkLogo} alt="Growlink" className="w-48" />
+                    <img src={growlinkLogoLight} alt="GrowLink" className="w-48" />
                 </Link>
 
                 <nav className="flex gap-20">
@@ -31,21 +27,20 @@ export default function AppNavigation() {
                         <Link
                             key={item.name}
                             to={item.href}
-                            className={`px-3 py-2 font-medium transition-colors text-primary-foreground  ${isActive(item.href)
-                                ? "underline underline-offset-10"
-                                : "hover:opacity-80"
-                                }`}
+                            className={cn('px-3 py-2 font-semibold transition-colors text-black', {
+                                'underline underline-offset-10 text-primary': isActive(item.href),
+                                'hover:opacity-80 hover:text-primary': !isActive(item.href),
+                            })}
                         >
                             {item.name}
                         </Link>
                     ))}
                 </nav>
 
-                <div className="flex gap-4">
-                    <Button variant="white">Login</Button>
-                    <Button variant="secondary">Get Started</Button>
+                <div className="flex gap-2">
+                    <Button variant="ghost">Login</Button>
+                    <Button>Get Started</Button>
                 </div>
-
             </div>
         </header>
     )

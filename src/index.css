@@ -24,10 +24,10 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: #0104AC;
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: #7ED348;
-  --secondary-foreground: oklch(0.985 0 0);
+  --primary: #3235E9;
+  --primary-foreground: #FFF;
+  --secondary: #95F458;
+  --secondary-foreground: #000;
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
   --accent: oklch(0.97 0 0);
@@ -143,12 +143,4 @@ body {
   h1 {
     @apply text-4xl font-bold;
   }
-}
-
-.gradient-text {
-  @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
-}
-
-.gradient-primary {
-  @apply from-primary to-secondary;
 }
