@@ -1,12 +1,10 @@
-import IconLabel from "@/components/forms/IconLabel";
 import SelectField, { type SelectOption } from "@/components/forms/SelectField";
 import TagInput from "@/components/forms/TagInput";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-import { Building, Clock, DollarSign, MapPin, Plus, Users } from "lucide-react";
+import { Plus } from "lucide-react";
 import { useState } from "react";
 import type { Tag } from "react-tag-input";
 
