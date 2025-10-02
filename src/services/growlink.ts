@@ -1,5 +1,6 @@
 import { API_URL } from '@/constants/env'
-import type { RegisterUserRequest } from '@/types/user'
+import type { ProjectListRequest, Project } from '@/types/project'
+import type { RegisterUserRequest, StudentListRequest, Student } from '@/types/user'
 import axios from 'axios'
 
 
@@ -14,6 +15,37 @@ export const registerUser = async (request: RegisterUserRequest) => {
         return res.data
     } catch (error) {
         console.error('Error registering user:', error)
+        throw error
+    }
+}
+
+export const loginUser = async (email: string, password: string) => {
+    try {
+        const res = await api.post(`${API_URL}/v1/user/login`, { email, password })
+        
+        return res.data
+    } catch (error) {
+        console.error('Error logging in user:', error)
+        throw error
+    }
+}
+
+export const getProjectList = async (request: ProjectListRequest): Promise<{ projects: Project[], total: number }> => {
+    try {
+        const res = await api.get(`${API_URL}/v1/project/list`, { params: request })
+        return res.data
+    } catch (error) {
+        console.error('Error fetching project list:', error)
+        throw error
+    }
+}
+
+export const getStudentList = async (request: StudentListRequest): Promise<{ students: Student[], total_count: number, page: number, limit: number, total_pages: number }> => {
+    try {
+        const res = await api.get(`${API_URL}/v1/user/students`, { params: request })
+        return res.data
+    } catch (error) {
+        console.error('Error fetching student list:', error)
         throw error
     }
 }

@@ -6,14 +6,21 @@ import IconLabel from "../forms/IconLabel";
 import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import type { Project } from "@/types/project";
 
 export type ProjectCardProps = {
-    type?: 'default' | 'summary'
+    type?: 'default' | 'summary';
+    project?: Project;
 }
 
 export function ProjectCard({
-    type = 'default'
+    type = 'default',
+    project
 }: ProjectCardProps) {
+    // Use default values if no project is provided (for backwards compatibility)
+    const projectName = project?.name || "Project Title";
+    const projectStatus = project?.status || "Closed";
+
     return (
         <Card>
             <CardHeader >
@@ -24,12 +31,14 @@ export function ProjectCard({
                             <AvatarFallback className="rounded-lg">IC</AvatarFallback>
                         </Avatar>
                         <div>
-                            <CardTitle>Project Title</CardTitle>
+                            <CardTitle>{projectName}</CardTitle>
                             <CardDescription>Project Organization</CardDescription>
                         </div>
                     </div>
                     {type !== 'summary' && (
-                        <Badge variant='destructive'>Closed</Badge>
+                        <Badge variant={projectStatus === 'open' ? 'default' : 'destructive'}>
+                            {projectStatus}
+                        </Badge>
                     )}
                 </div>
             </CardHeader>
