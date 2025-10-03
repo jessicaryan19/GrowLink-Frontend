@@ -8,14 +8,22 @@ export type SelectFieldProps = {
     placeholder?: string,
     options?: SelectOption[],
     defaultValue?: string,
+    value?: string,
+    onValueChange?: (value: string) => void,
 }
 export default function SelectField({
     placeholder = "Select an option",
     options = [],
     defaultValue,
+    value,
+    onValueChange,
 }: SelectFieldProps) {
     return (
-        <Select defaultValue={defaultValue}>
+        <Select 
+            defaultValue={defaultValue} 
+            value={value}
+            onValueChange={onValueChange}
+        >
             <SelectTrigger className="w-full">
                 <SelectValue placeholder={placeholder} />
             </SelectTrigger>
