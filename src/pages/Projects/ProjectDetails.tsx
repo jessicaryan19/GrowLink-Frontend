@@ -4,28 +4,106 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
 import { Building, Calendar, Clock, DollarSign, MapPin, Users } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { getProjectDetails } from "@/services/growlink";
+import type { Project } from "@/types/project";
 
 export default function ProjectDetails() {
+    const { projectId } = useParams<{ projectId: string }>();
+    const [project, setProject] = useState<Project | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchProjectDetails = async () => {
+            if (!projectId) {
+                setError("Project ID is required");
+                setIsLoading(false);
+                return;
+            }
+
+            setIsLoading(true);
+            setError(null);
+
+            try {
+                const projectData = await getProjectDetails(projectId);
+                setProject(projectData);
+            } catch (err) {
+                setError("Failed to fetch project details. Please try again.");
+                console.error("Error fetching project details:", err);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchProjectDetails();
+    }, [projectId]);
+
+    if (isLoading) {
+        return (
+            <div className="flex flex-col items-center py-10 gap-10">
+                <div className="container px-10">
+                    <div className="animate-pulse">
+                        <div className="bg-gray-200 h-96 rounded-lg"></div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="flex flex-col items-center py-10 gap-10">
+                <div className="container px-10">
+                    <div className="text-center py-8">
+                        <p className="text-red-500 mb-4">{error}</p>
+                        <Button onClick={() => window.location.reload()}>Retry</Button>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    if (!project) {
+        return (
+            <div className="flex flex-col items-center py-10 gap-10">
+                <div className="container px-10">
+                    <div className="text-center py-8">
+                        <p className="text-muted-foreground">Project not found.</p>
+                        <Link to="/projects">
+                            <Button className="mt-4">Back to Projects</Button>
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    const formattedDate = project.created_at ? new Date(project.created_at).toLocaleDateString() : "";
+    const statusVariant = project.status === "open" ? "default" : "destructive";
+    
     return (
         <div className="flex flex-col items-center py-10 gap-10">
             <div className="container px-10 flex gap-6">
                 <div className="w-2/3 flex flex-col gap-6">
                     <Card>
                         <CardContent className="flex flex-col gap-6">
-                            <div className="flex justify-center items-start">
+                            <div className="flex justify-between items-start">
                                 <div className="flex flex-col gap-6">
-                                    <h1>Project Title Project Title Project Title Project Title</h1>
+                                    <h1>{project.name}</h1>
                                     <div className="text-muted-foreground">
-                                        <IconLabel icon={Calendar} label="Posted May 15, 2024" />
+                                        <IconLabel icon={Calendar} label={`Posted ${formattedDate}`} />
                                     </div>
                                 </div>
-                                <Badge variant="destructive">Closed</Badge>
+                                <Badge variant={statusVariant as "default" | "destructive"}>
+                                    {project.status.charAt(0).toUpperCase() + project.status.slice(1)}
+                                </Badge>
                             </div>
 
                             <div className="w-full grid grid-cols-3 gap-4">
-                                <Button className="col-span-2" size='lg'>
-                                    <Link to='/projects/1/apply'>Apply Now</Link>
+                                <Button className="col-span-2" size='lg' disabled={project.status !== "open"}>
+                                    <Link to={`/projects/${project.uuid}/apply`}>Apply Now</Link>
                                 </Button>
                                 <Button variant='outline' size='lg'>
                                     Save Project
@@ -38,12 +116,7 @@ export default function ProjectDetails() {
                         <CardContent className="flex flex-col gap-4">
                             <CardTitle>Project Description</CardTitle>
                             <CardDescription>
-                                Looking for creative students to help create engaging social media content for our traditional batik business.
-                                Need someone familiar with Instagram, TikTok, and Facebook marketing.
-                                Looking for creative students to help create engaging social media content for our traditional batik business.
-                                Need someone familiar with Instagram, TikTok, and Facebook marketing.
-                                Looking for creative students to help create engaging social media content for our traditional batik business.
-                                Need someone familiar with Instagram, TikTok, and Facebook marketing.
+                                {project.description}
                             </CardDescription>
                         </CardContent>
                     </Card>
@@ -51,9 +124,14 @@ export default function ProjectDetails() {
                     <Card>
                         <CardContent className="flex flex-col gap-4">
                             <CardTitle>Skills & Expertise</CardTitle>
-                            <div className="flex gap-2">
-                                <Badge variant='outline'>Social Media</Badge>
-                                <Badge variant="outline">Marketing</Badge>
+                            <div className="flex gap-2 flex-wrap">
+                                {project.skills && project.skills.length > 0 ? (
+                                    project.skills.map((skill, index) => (
+                                        <Badge key={index} variant='outline'>{skill}</Badge>
+                                    ))
+                                ) : (
+                                    <span className="text-muted-foreground">No specific skills listed</span>
+                                )}
                             </div>
                         </CardContent>
                     </Card>
@@ -72,11 +150,9 @@ export default function ProjectDetails() {
                     <Card>
                         <CardContent className="flex flex-col gap-4">
                             <CardTitle>Expected Deliverables</CardTitle>
-                            <ul className="list-disc list-inside text-muted-foreground flex flex-col">
-                                <li>10 social media posts (images and captions)</li>
-                                <li>5 short videos (15-30 seconds each)</li>
-                                <li>Content calendar for 1 month</li>
-                            </ul>
+                            <CardDescription>
+                                {project.deliverables}
+                            </CardDescription>
                         </CardContent>
                     </Card>
                 </div>
@@ -112,7 +188,7 @@ export default function ProjectDetails() {
                             <CardTitle>Project Details</CardTitle>
                             <div className="text-muted-foreground">
                                 <IconLabel icon={DollarSign} label="Rp 500,000 - Rp 1,000,000" />
-                                <IconLabel icon={Clock} label="3 months" />
+                                <IconLabel icon={Clock} label={`${project.duration} ${project.timeline}`} />
                                 <IconLabel icon={Users} label="8 applicants" />
                             </div>
                         </CardContent>
@@ -124,8 +200,13 @@ export default function ProjectDetails() {
                             <div className="text-muted-foreground">
                                 Showcase your skills and win this project
                             </div>
-                            <Button className="w-full">
-                                <Link to='/projects/1/apply'>Apply Now</Link>
+                            <Button 
+                                className="w-full" 
+                                disabled={project.status !== "open"}
+                            >
+                                <Link to={`/projects/${project.uuid}/apply`}>
+                                    {project.status === "open" ? "Apply Now" : "Project Closed"}
+                                </Link>
                             </Button>
                         </CardContent>
                     </Card>

@@ -78,7 +78,7 @@ export function ProjectCard({
                 <CardFooter className="flex justify-between items-end">
                     <p className="text-muted-foreground text-sm">Posted May 15, 2024</p>
                     <Button>
-                        <Link to="/projects/1">
+                        <Link to={`/projects/${project?.uuid || 1}`}>
                             View Details
                         </Link>
                     </Button>

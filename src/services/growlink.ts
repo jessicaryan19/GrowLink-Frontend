@@ -31,9 +31,6 @@ export const loginUser = async (email: string, password: string) => {
 }
 
 export const getProjectList = async (request: ProjectListRequest): Promise<{ projects: Project[], total: number }> => {
-    console.log("ENV", import.meta.env);
-    console.log("API_URL", API_URL);
-
     try {
         const res = await api.get(`/v1/project/list`, { params: request })
         return res.data
@@ -59,6 +56,16 @@ export const createProject = async (projectData: CreateProjectRequest, businessI
         return res.data
     } catch (error) {
         console.error('Error creating project:', error)
+        throw error
+    }
+}
+
+export const getProjectDetails = async (projectId: string): Promise<Project> => {
+    try {
+        const res = await api.get(`/v1/project/${projectId}`)
+        return res.data
+    } catch (error) {
+        console.error('Error fetching project details:', error)
         throw error
     }
 }
