@@ -19,3 +19,12 @@ export type ProjectListRequest = {
     page: number
     limit: number
 }
+
+export type CreateProjectRequest = {
+    name: string
+    description: string
+    duration: number
+    timeline: string
+    deliverables: string
+    skills: string[]
+}

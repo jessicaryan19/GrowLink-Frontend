@@ -1,5 +1,5 @@
 import { API_URL } from '@/constants/env'
-import type { ProjectListRequest, Project } from '@/types/project'
+import type { ProjectListRequest, Project, CreateProjectRequest } from '@/types/project'
 import type { RegisterUserRequest, StudentListRequest, Student } from '@/types/user'
 import axios from 'axios'
 
@@ -49,6 +49,16 @@ export const getStudentList = async (request: StudentListRequest): Promise<{ stu
         return res.data
     } catch (error) {
         console.error('Error fetching student list:', error)
+        throw error
+    }
+}
+
+export const createProject = async (projectData: CreateProjectRequest, businessId: string): Promise<Project> => {
+    try {
+        const res = await api.post(`/v1/project/business/${businessId}`, projectData)
+        return res.data
+    } catch (error) {
+        console.error('Error creating project:', error)
         throw error
     }
 }
