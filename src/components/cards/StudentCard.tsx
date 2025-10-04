@@ -1,9 +1,10 @@
-import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import IconLabel from "../forms/IconLabel";
 import { GraduationCap, MapPin, Star } from "lucide-react";
+import { Link } from "react-router-dom";
+import UserAvatar from "../common/UserAvatar";
 import type { Student } from "@/types/user";
 
 export type StudentCardProps = {
@@ -21,11 +22,7 @@ export default function StudentCard({ student }: StudentCardProps) {
             <CardHeader>
                 <div className="flex justify-between items-start">
                     <div className="flex gap-4">
-                        <Avatar className="h-14 w-14">
-                            <AvatarImage src="https://github.com/shadcn.png" />
-                            <AvatarFallback>IC</AvatarFallback>
-                        </Avatar>
-
+                        <UserAvatar />
                         <div className="flex flex-col gap-2">
                             <CardTitle>{studentName}</CardTitle>
                             <div className="flex items-center gap-1">
@@ -72,7 +69,9 @@ export default function StudentCard({ student }: StudentCardProps) {
                     <span className="text-muted-foreground">/hour</span>
                 </div>
                 <div className="flex gap-2">
-                    <Button variant="outline">View Profile</Button>
+                    <Button variant="outline">
+                        <Link to='/profile/1'>View Profile</Link>
+                    </Button>
                     <Button>Hire Now</Button>
                 </div>
             </CardFooter>

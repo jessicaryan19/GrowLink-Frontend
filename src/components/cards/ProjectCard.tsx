@@ -3,9 +3,9 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import IconLabel from "../forms/IconLabel";
-import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import UserAvatar from "../common/UserAvatar";
 import type { Project } from "@/types/project";
 
 export type ProjectCardProps = {
@@ -26,10 +26,7 @@ export function ProjectCard({
             <CardHeader >
                 <div className="flex justify-between items-start">
                     <div className="flex gap-4">
-                        <Avatar className="h-14 w-14 rounded-lg">
-                            <AvatarImage src="https://github.com/evilrabbit.png" />
-                            <AvatarFallback className="rounded-lg">IC</AvatarFallback>
-                        </Avatar>
+                        <UserAvatar variant="square"/>
                         <div>
                             <CardTitle>{projectName}</CardTitle>
                             <CardDescription>Project Organization</CardDescription>

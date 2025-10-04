@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
 import { Building, Calendar, Clock, DollarSign, MapPin, Users } from "lucide-react";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import UserAvatar from "@/components/common/UserAvatar";
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getProjectDetails } from "@/services/growlink";
@@ -161,11 +161,7 @@ export default function ProjectDetails() {
                     <Card>
                         <CardContent className="flex flex-col gap-4">
                             <div className="flex gap-4 items-center">
-                                <Avatar className="h-14 w-14 rounded-lg">
-                                    <AvatarImage src="https://github.com/evilrabbit.png" />
-                                    <AvatarFallback className="rounded-lg">IC</AvatarFallback>
-                                </Avatar>
-
+                                <UserAvatar variant="square" />
                                 <div className="flex flex-col">
                                     <CardTitle>Organization Name</CardTitle>
                                     <div className="text-muted-foreground">Jessica Ryan</div>
