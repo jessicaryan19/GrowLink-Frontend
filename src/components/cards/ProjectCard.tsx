@@ -6,14 +6,21 @@ import IconLabel from "../forms/IconLabel";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import UserAvatar from "../common/UserAvatar";
+import type { Project } from "@/types/project";
 
 export type ProjectCardProps = {
-    type?: 'default' | 'summary'
+    type?: 'default' | 'summary';
+    project?: Project;
 }
 
 export function ProjectCard({
-    type = 'default'
+    type = 'default',
+    project
 }: ProjectCardProps) {
+    // Use default values if no project is provided (for backwards compatibility)
+    const projectName = project?.name || "Project Title";
+    const projectStatus = project?.status || "Closed";
+
     return (
         <Card>
             <CardHeader >
@@ -21,12 +28,14 @@ export function ProjectCard({
                     <div className="flex gap-4">
                         <UserAvatar variant="square"/>
                         <div>
-                            <CardTitle>Project Title</CardTitle>
+                            <CardTitle>{projectName}</CardTitle>
                             <CardDescription>Project Organization</CardDescription>
                         </div>
                     </div>
                     {type !== 'summary' && (
-                        <Badge variant='destructive'>Closed</Badge>
+                        <Badge variant={projectStatus === 'open' ? 'default' : 'destructive'}>
+                            {projectStatus}
+                        </Badge>
                     )}
                 </div>
             </CardHeader>
@@ -66,7 +75,7 @@ export function ProjectCard({
                 <CardFooter className="flex justify-between items-end">
                     <p className="text-muted-foreground text-sm">Posted May 15, 2024</p>
                     <Button>
-                        <Link to="/projects/1">
+                        <Link to={`/projects/${project?.uuid || 1}`}>
                             View Details
                         </Link>
                     </Button>

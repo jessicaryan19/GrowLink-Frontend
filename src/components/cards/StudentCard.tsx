@@ -5,8 +5,18 @@ import IconLabel from "../forms/IconLabel";
 import { GraduationCap, MapPin, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import UserAvatar from "../common/UserAvatar";
+import type { Student } from "@/types/user";
 
-export default function StudentCard() {
+export type StudentCardProps = {
+    student?: Student;
+}
+
+export default function StudentCard({ student }: StudentCardProps) {
+    // Use default values if no student is provided (for backwards compatibility)
+    const studentName = student?.name || "Student Name";
+    const studentUniversity = student?.university || "Universitas Bina Nusantara";
+    const studentSkills = student?.skills || ["Social Media", "Marketing"];
+
     return (
         <Card>
             <CardHeader>
@@ -14,7 +24,7 @@ export default function StudentCard() {
                     <div className="flex gap-4">
                         <UserAvatar />
                         <div className="flex flex-col gap-2">
-                            <CardTitle>Student Name</CardTitle>
+                            <CardTitle>{studentName}</CardTitle>
                             <div className="flex items-center gap-1">
                                 <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                                 <span className="font-medium">5.0</span>
@@ -31,7 +41,7 @@ export default function StudentCard() {
 
             <CardContent className="flex flex-col gap-6">
                 <div className="grid grid-cols-2 gap-2 text-muted-foreground">
-                    <IconLabel icon={GraduationCap} label="Universitas Bina Nusantara" />
+                    <IconLabel icon={GraduationCap} label={studentUniversity} />
                     <IconLabel icon={MapPin} label="Jakarta, Indonesia" />
                 </div>
 
@@ -41,8 +51,15 @@ export default function StudentCard() {
                 </CardDescription>
 
                 <div className="flex gap-2">
-                    <Badge variant="outline">Social Media</Badge>
-                    <Badge variant="outline">Marketing</Badge>
+                    {studentSkills && studentSkills.length > 0 ? (
+                        studentSkills.map((skill, index) => (
+                            <Badge key={index} variant="outline">{skill}</Badge>
+                        ))
+                    ) : (
+                        <>
+                            <Badge variant="outline">No skills listed</Badge>
+                        </>
+                    )}
                 </div>
             </CardContent>
 
