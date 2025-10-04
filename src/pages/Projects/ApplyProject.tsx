@@ -3,7 +3,6 @@ import IconLabel from "@/components/forms/IconLabel";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Building, Clock, DollarSign, MapPin, Users } from "lucide-react";
 
 export default function ApplyProject() {

@@ -5,7 +5,7 @@ import IconLabel from "@/components/forms/IconLabel";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
-import { ExternalLink, GraduationCap, Link, Mail, MapPin, Phone, Star } from "lucide-react";
+import { GraduationCap, MapPin, Star } from "lucide-react";
 
 export default function Profile() {
     return (
